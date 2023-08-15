@@ -24,4 +24,8 @@ class Setting extends Model
         "languages",
         "pit_animal",
     ];
+
+    protected $casts = [
+        'languages' => 'array',
+    ];
 }
