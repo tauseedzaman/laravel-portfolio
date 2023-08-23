@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/create", function () {
     User::create([
         "name" => "tauseed",
-        "name" => "tauseed@gmail.com",
+        "email" => "tauseed@gmail.com",
         "password" => bcrypt("password"),
     ]);
 });
