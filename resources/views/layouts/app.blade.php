@@ -41,19 +41,23 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}" type="text/css">
+
     <link rel="stylesheet" href="{{ asset('css/projects.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}" type="text/css">
 </head>
+@php
+    $user = App\Models\Setting::first();
+@endphp
 
 <body>
     <header class="header">
-        <a href="/" class="header-logo">@anniedotexe</a>
+        <a href="/" class="header-logo">{{ '@' . $user->username }}</a>
         <nav class="nav">
             <div class="toggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="{{ route("about") }}">About</a></li>
-                <li class="nav-item"><a href="{{ route("projects") }}">Projects</a></li>
-                <li class="nav-item"><a href="{{ route("photos") }}">Photos</a>
+                <li class="nav-item"><a href="{{ route('about') }}">About</a></li>
+                <li class="nav-item"><a href="{{ route('projects') }}">Projects</a></li>
+                <li class="nav-item"><a href="{{ route('photos') }}">Photos</a>
                 </li>
             </ul>
         </nav>
@@ -64,65 +68,46 @@
     <footer class="footer-container">
         <div class="footer">
             <div class="footer-column">
-                <a href="/" class="footer-logo">@anniedotexe</a>
+                <a href="/" class="footer-logo">{{ '@' . $user->username }}</a>
                 <div class="socials">
                     <ul>
                         <li class="social-link">
-                            <a href="https://www.linkedin.com/in/anniewu2303/" aria-label="LinkedIn" target="_blank">
+                            <a href="{{ $user->linkedin_url }}" aria-label="LinkedIn" target="_blank">
                                 <i class="fa-brands fa-linkedin-in"></i>
                             </a>
                         </li>
                         <li class="social-link">
-                            <a href="https://github.com/anniedotexe" aria-label="GitHub" target="_blank">
+                            <a href="{{ $user->github_url }}" aria-label="GitHub" target="_blank">
                                 <i class="fa-brands fa-github"></i>
                             </a>
                         </li>
                         <li class="social-link">
-                            <a href="https://instagram.com/anniedotexe" aria-label="Instagram" target="_blank">
+                            <a href="{{ $user->insta_url }}" aria-label="Instagram" target="_blank">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
-                <span class="copyright"><i class="fa-regular fa-copyright"></i> Annie Wu
-                    2021-2023</span>
+                <span class="copyright"><i class="fa-regular fa-copyright"></i> {{ $user->name }} -
+                    {{ now()->format('Y') }}</span>
             </div>
             <div class="footer-column">
-                <a href="/about" class="footer-button">
+                <a href="{{ route('about') }}" class="footer-button">
                     <img src="{{ asset('img/smile.svg') }}" alt="Smile Icon">
                     About
                 </a>
-                <a href="/projects" class="footer-button">
+                <a href="{{ route('projects') }}" class="footer-button">
                     <img src="{{ asset('img/coding.svg') }}" alt="Code Icon">
                     Projects
                 </a>
 
             </div>
-            <!-- <div class="footer-column">
-                    <a href="https://anniedotexe.notion.site/2f89ab02918142e885a684db6e8d6c53?v=e84b8638720749c9a11741c6790c7022"
-                        class="footer-button">
-                        <img src="{{ asset('img/blog.svg') }}" alt="Blog Icon">
-                        Thoughts
-                    </a>
-                    <a href="/anniewu-resume.pdf" class="footer-button">
-                        <img src="{{ asset('img/resume.svg') }}" alt="Resume Icon">
-                        Resume
-                    </a>
-                    <a href="mailto:anniewu2303@gmail.com" class="footer-button">
-                        <img src="{{ asset('img/email.svg') }}" alt="Email Icon">
-                        Contact
-                    </a>
-                </div> -->
             <div class="footer-column">
-                <!-- <a href="https://www.polywork.com/anniedotexe" class="footer-button">
-                                        <img src="{{ asset('img/polywork.svg') }}" alt="PolyWork Icon">
-                                        Updates
-                                    </a> -->
-                <a href="https://anniedotexe.mypixieset.com/" class="footer-button">
+                <a href="{{ route('photos') }}" class="footer-button">
                     <img src="{{ asset('img/camera.svg') }}" alt="Camera Icon">
                     Photos
                 </a>
-                <a href="mailto:anniewu2303@gmail.com" class="footer-button">
+                <a href="mailto:{{ $user->email }}" class="footer-button">
                     <img src="{{ asset('img/email.svg') }}" alt="Email Icon">
                     Contact
                 </a>

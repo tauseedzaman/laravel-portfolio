@@ -30,6 +30,7 @@ class ExperienceResource extends Resource
                 Forms\Components\TextInput::make('role')
                     ->maxLength(255),
                 DatePicker::make("start_date"),
+                DatePicker::make("end_date"),
                 Forms\Components\TextInput::make('company')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('company_url')
@@ -49,6 +50,8 @@ class ExperienceResource extends Resource
             ->columns([
                 TextColumn::make("role"),
                 TextColumn::make("start_date")
+                    ->dateTime(),
+                TextColumn::make("end_date")
                     ->dateTime(),
                 TextColumn::make("company")
                 ->searchable(),

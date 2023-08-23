@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("role");
             $table->string("start_date");
+            $table->string("end_date");
             $table->string("company")->nullable();
             $table->string("company_url")->nullable();
             $table->enum("job_type",["remote","onsite"]);
